@@ -46,8 +46,8 @@
 <body>
 
     <main id="main" class="main">
-        @include('layouts.header')
-        @include('layouts.sidebar')
+        @include('Layouts.header')
+        @include('Layouts.sidebar')
         @yield('content')
     </main>
 
