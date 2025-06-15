@@ -22,7 +22,7 @@ RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage
 
 # Laravel commands (no config cache to avoid errors on first deploy)
-RUN php artisan key:generate
+# RUN php artisan key:generate
 
 EXPOSE 8000
 
