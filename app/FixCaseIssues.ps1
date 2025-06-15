@@ -5,6 +5,13 @@ $backendRoot = "resources/views/Backendpages"
 function Rename-ToTemp {
     param ($path)
     $folderName = Split-Path $path -Leaf
+
+    # ✅ Skip if already renamed
+    if ($folderName -like '__TEMP_*') {
+        Write-Host "⏭ Skipping TEMP rename for: $folderName (already TEMP renamed)" -ForegroundColor Yellow
+        return $path
+    }
+
     $parentPath = Split-Path $path -Parent
     $tempName = "__TEMP_$folderName"
     $tempPath = Join-Path $parentPath $tempName
@@ -20,22 +27,29 @@ function Rename-ToTemp {
     }
 }
 
-function Rename-ToLowercase {
-    param ($originalPath, $tempPath)
-    $lowerName = (Split-Path "$originalPath" -Leaf).ToLower()
-    $parentPath = Split-Path "$originalPath" -Parent
-    $finalPath = Join-Path "$parentPath" "$lowerName"
 
-    if (Test-Path -LiteralPath "$tempPath") {
-        Rename-Item -LiteralPath "$tempPath" -NewName "$lowerName"
+function Rename-ToLower {
+    param ($path)
+    $folderName = Split-Path $path -Leaf
+    $parentPath = Split-Path $path -Parent
+    $lowerName = $folderName.ToLower()
+    $lowerPath = Join-Path $parentPath $lowerName
+
+    # ✅ Only rename if names differ in actual string (not just case)
+    if ($folderName -ceq $lowerName) {
+        Write-Host "⏭ Already lowercase: $folderName" -ForegroundColor Gray
+        return
+    }
+
+    if (Test-Path -LiteralPath "$path") {
+        Rename-Item -LiteralPath "$path" -NewName "$lowerName"
         git add -A
-        git commit -m "Renamed folder: $(Split-Path $originalPath -Leaf) → $lowerName"
-        return "$finalPath"
+        git commit -m "Renamed folder to lowercase: $folderName → $lowerName"
     } else {
-        Write-Host "❌ TEMP path does not exist: $tempPath" -ForegroundColor Red
-        return $null
+        Write-Host "❌ TEMP path does not exist: $path" -ForegroundColor Red
     }
 }
+
 
 function Rename-BladeFilesToLowercase {
     param ($folderPath)
