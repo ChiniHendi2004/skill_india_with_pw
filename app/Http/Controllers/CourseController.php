@@ -10,24 +10,24 @@ class CourseController extends Controller
 
     public function createCoursePage()
     {
-        return view('Backendpages.Course.CreateCourse');
+        return view('Backendpages.Course.createcourse');
     }
     public function editCoursePage($id)
     {
-        return view('Backendpages.Course.EditCourse', ['id' => $id]);
+        return view('Backendpages.Course.editcourse', ['id' => $id]);
     }
 
     public function courseListPage()
     {
-        return view('Backendpages.Course.CourseList');
+        return view('Backendpages.Course.courselist');
     }
     public function courseEditPage($id)
     {
-        return view('Backendpages.Course.EditCourse', ['id' => $id]);
+        return view('Backendpages.Course.editcourse', ['id' => $id]);
     }
     public function coursViewPage($id)
     {
-        return view('Backendpages.Course.ViewCourseDetails', ['id' => $id]);
+        return view('Backendpages.Course.viewcoursedetails', ['id' => $id]);
     }
 
 

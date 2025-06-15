@@ -11,7 +11,7 @@ class DashboardPage extends Controller
 
     public function dashboardPage()
     {
-        return view('BackendPages.Dashboard.dashboard');
+        return view('Backendpages.Dashboard.dashboard');
     }
 
     public function adminRegisterPage()

@@ -10,13 +10,13 @@ class GroupsController extends Controller
 
     public function createGroupPage()
     {
-        return view('Backendpages.Groups.CreateGroup');
+        return view('Backendpages.Groups.creategroup');
     }
 
 
     public function groupListPage()
     {
-        return view('Backendpages.Groups.GroupListPage');
+        return view('Backendpages.Groups.grouplistpage');
     }
 
     public function store(Request $request)

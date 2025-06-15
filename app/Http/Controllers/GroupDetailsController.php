@@ -10,11 +10,11 @@ class GroupDetailsController extends Controller
 {
     public function addDetailsGroupPage($g_id)
     {
-        return view('Backendpages.Groups.AddGroupDetails', ['g_id' => $g_id]);
+        return view('Backendpages.Groups.addgroupdetails', ['g_id' => $g_id]);
     }
     public function viewDetailsGroupPage($g_id)
     {
-        return view('Backendpages.Groups.ViewGroupDetails', ['g_id' => $g_id]);
+        return view('Backendpages.Groups.viewgroupdetails', ['g_id' => $g_id]);
     }
     public function store(Request $request)
     {

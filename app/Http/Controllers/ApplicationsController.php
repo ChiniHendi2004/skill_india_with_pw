@@ -11,22 +11,22 @@ class ApplicationsController extends Controller
 
     public function pendingApplicationsPage()
     {
-        return view('Backendpages.CourseApplications.PendingApplications');
+        return view('Backendpages.CourseApplications.pendingapplications');
     }
 
     public function rejectedApplicationsPage()
     {
-        return view('Backendpages.CourseApplications.RejectedApplications');
+        return view('Backendpages.CourseApplications.rejectedapplications');
     }
 
     public function acceptedApplicationsPage()
     {
-        return view('Backendpages.CourseApplications.AccepetedApplications');
+        return view('Backendpages.CourseApplications.accepetedapplications');
     }
 
     public function viewApplicationPage($id)
     {
-        return view('Backendpages.CourseApplications.ViewApplication', ['id' => $id]);
+        return view('Backendpages.CourseApplications.viewapplication.blade', ['id' => $id]);
     }
 
 

@@ -12,7 +12,7 @@ class CourseDetailsController extends Controller
         $course = DB::table('courses')->where('id', $id)->first();
         $groups = DB::table('groups')->get();
 
-        return view('Backendpages.Course.AddCourseDetails', [
+        return view('Backendpages.Course.addcoursedetails', [
             'id' => $id,
             'course' => $course,
             'groups' => $groups
@@ -61,66 +61,7 @@ class CourseDetailsController extends Controller
     }
 
 
-    // public function addDetails(Request $request)
-    // {
-    //     $c_id = $request->c_id;
-
-    //     // Validate group selection
-    //     if (!$request->has('selectedGroups') || empty($request->selectedGroups)) {
-    //         return response()->json(['error' => 'No groups selected or invalid format.'], 400);
-    //     }
-
-    //     // Convert durations to total minutes
-    //     $totalMinutes = (
-    //         ($request->years * 525600) +
-    //         ($request->months * 43800) +
-    //         ($request->days * 1440) +
-    //         ($request->hours * 60) +
-    //         $request->minutes
-    //     );
-
-    //     // Check if course_details exists
-    //     $existingDetails = DB::table('course_details')->where('c_id', $c_id)->first();
-
-    //     if ($existingDetails) {
-    //         DB::table('course_details')
-    //             ->where('c_id', $c_id)
-    //             ->update([
-    //                 'image' => $request->image,
-    //                 'description' => $request->description,
-    //                 'duration' => $totalMinutes,
-    //                 'updated_at' => now()
-    //             ]);
-    //     } else {
-    //         DB::table('course_details')->insert([
-    //             'c_id' => $c_id,
-    //             'image' => $request->image,
-    //             'description' => $request->description,
-    //             'duration' => $totalMinutes,
-    //             'created_at' => now(),
-    //             'updated_at' => now()
-    //         ]);
-    //     }
-
-    //     // Delete existing group_master entries
-    //     DB::table('group_master')->where('c_id', $c_id)->delete();
-
-    //     // Insert new group_master entries
-    //     foreach ($request->selectedGroups as $group) {
-    //         foreach ($group['details'] as $gd_id) {
-    //             DB::table('group_master')->insert([
-    //                 'c_id' => $c_id,
-    //                 'g_id' => $group['g_id'],
-    //                 'gd_id' => $gd_id,
-    //                 'created_at' => now(),
-    //                 'updated_at' => now()
-    //             ]);
-    //         }
-    //     }
-
-    //     return response()->json(['message' => 'Course details and groups added/updated successfully.']);
-    // }
-
+  
 
     public function addDetails(Request $request)
     {
