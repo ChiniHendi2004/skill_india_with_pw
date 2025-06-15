@@ -65,7 +65,11 @@ class StudentController extends Controller
             'password' => 'required|min:6|confirmed', // Add this
         ]);
 
-        // Upload Aadhar PDF
+       
+
+
+        $aadharPdfPath = null;
+
         if ($request->hasFile('aadhar_pdf')) {
             $aadharPdf = $request->file('aadhar_pdf');
             $aadharPdfPath = $aadharPdf->store('aadhar_pdfs', 'public');
