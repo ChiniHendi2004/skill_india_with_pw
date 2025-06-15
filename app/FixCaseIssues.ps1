@@ -5,45 +5,53 @@ $backendRoot = "resources/views/Backendpages"
 function Rename-ToTemp {
     param ($path)
     $folderName = Split-Path $path -Leaf
-    $tempPath = Join-Path (Split-Path $path -Parent) ("__TEMP_" + $folderName)
-    Rename-Item -Path $path -NewName $tempPath
+    $parentPath = Split-Path $path -Parent
+    $tempName = "__TEMP_$folderName"
+    $tempPath = Join-Path $parentPath $tempName
+
+    Rename-Item -Path $path.ToString() -NewName $tempName
     git add -A
-    git commit -m "TEMP rename folder: $folderName → __TEMP_$folderName"
+    git commit -m "TEMP rename folder: $folderName → $tempName"
+
     return $tempPath
 }
 
 function Rename-ToLowercase {
     param ($originalPath, $tempPath)
     $lowerName = (Split-Path $originalPath -Leaf).ToLower()
-    $finalPath = Join-Path (Split-Path $originalPath -Parent) $lowerName
-    Rename-Item -Path $tempPath -NewName $lowerName
+    $parentPath = Split-Path $originalPath -Parent
+    $finalPath = Join-Path $parentPath $lowerName
+
+    Rename-Item -Path $tempPath.ToString() -NewName $lowerName
     git add -A
     git commit -m "Renamed folder: $(Split-Path $originalPath -Leaf) → $lowerName"
+
     return $finalPath
 }
 
 function Rename-BladeFilesToLowercase {
     param ($folder)
     $files = Get-ChildItem -Path $folder -Filter "*.blade.php"
+
     foreach ($file in $files) {
         $originalName = $file.Name
         $tempName = $originalName + ".tmp"
         $tempPath = Join-Path $file.DirectoryName $tempName
 
-        Rename-Item $file.FullName $tempPath
+        Rename-Item $file.FullName.ToString() $tempPath
         git add -A
         git commit -m "TEMP rename file: $originalName → $tempName"
 
         $finalName = $originalName.ToLower()
         $finalPath = Join-Path $file.DirectoryName $finalName
 
-        Rename-Item $tempPath $finalPath
+        Rename-Item $tempPath.ToString() $finalPath
         git add -A
         git commit -m "Renamed file: $originalName → $finalName"
     }
 }
 
-# MAIN: Get all folders under Backendpages
+# MAIN EXECUTION
 if (-Not (Test-Path $backendRoot)) {
     Write-Host "❌ Folder '$backendRoot' not found. Check your path." -ForegroundColor Red
     exit 1
@@ -62,13 +70,13 @@ foreach ($folder in $folders) {
         continue
     }
 
-    # Step 1: Temp rename folder
+    # Step 1: TEMP rename folder
     $tempFolder = Rename-ToTemp $absFolder
 
     # Step 2: Rename to lowercase
     $finalFolder = Rename-ToLowercase $absFolder $tempFolder
 
-    # Step 3: Lowercase blade files
+    # Step 3: Rename all blade files inside to lowercase
     Rename-BladeFilesToLowercase $finalFolder
 }
 
@@ -83,7 +91,7 @@ if (Test-Path $backendRoot) {
     git commit -m "Renamed Backendpages → backendpages"
 }
 
-# FINAL PUSH
+# Final Push
 git push
 
 Write-Host "`n✅ All folders and blade files renamed to lowercase and pushed to Git." -ForegroundColor Green
