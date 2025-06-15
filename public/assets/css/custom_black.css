@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+.primary-btn {
+    background: #05134c;
+    color: #fff;
+}
+.primary-btn:hover {
+    background: #05134c;
+    color: #fff;
+}
+.header {
+    margin-left: 300px;
+    border-bottom: 1px solid #a2a2a2;
+}
+.header .toggle-sidebar-btn {
+    font-size: 15px;
+    font-weight: 800;
+    margin-left: -10px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: -4px;
+    color: #070029;
+    background: #fff;
+    border-radius: 50%;
+    padding-left: 0;
+    height: 30px;
+    width: 30px;
+}
+.sidebar .logo {
+    padding: 0 10px 30px 10px;
+    text-align: center;
+}
+.logo img {
+    max-height: 50px;
+}
+.logo span {
+    font-family: "Lato", sans-serif;
+}
+.sidebar::-webkit-scrollbar {
+    background-color: #fff;
+  }
+  
+  .sidebar::-webkit-scrollbar-thumb {
+    background-color: #8a91af;
+  }
+.sidebar-nav .nav-link i {
+    color: #358ffd;
+  }
+.sidebar-nav .nav-link {
+    color: #ebebeb;
+    background: #8a91af78;
+    backdrop-filter: blur(8px);
+}
+.sidebar-nav .nav-link.collapsed {
+    color: #ebebeb;
+    background: #000;
+    backdrop-filter: blur(8px);
+  }
+
+  .sidebar-nav .nav-link.collapsed i {
+    color: #358ffd;
+  }
+  
+  .sidebar-nav .nav-link:hover {
+    color: #ebebeb;
+    background: #8a91af78;
+    backdrop-filter: blur(8px);
+  }
+  
+  .sidebar-nav .nav-link:hover i {
+    color: #358ffd;
+  }
+  .header {
+    box-shadow: none;
+  }
+  .sidebar {
+    background-color: #000000;
+    top: 0;
+    left: 0;
+    scrollbar-color: #adadad transparent;
+  }
+  .sidebar-nav .nav-content a {
+    color: #fff;
+  }
+  .sidebar-nav .nav-content a i {
+    font-size: 10px;
+  }
+  .sidebar-nav .nav-content a:hover {
+    color: #ebebeb;
+    background: #8a91af78;
+    transform: scale(1);
+    backdrop-filter: blur(8px);
+  }
+.pagetitle h1 {
+    color: #000;
+}
+@media (min-width: 1200px) {
+    .toggle-sidebar .header, .toggle-sidebar .header {
+        margin-left: 0;
+    }
+}
