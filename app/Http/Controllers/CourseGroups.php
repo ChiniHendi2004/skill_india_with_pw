@@ -10,12 +10,12 @@ class CourseGroups extends Controller
 {
     public function createCourseGroupPage()
     {
-        return view('BackendPages.Course.CreateCourseGroup');
+        return view('BackendPages.Course.createcoursegroup');
     }
 
     public function courseGroupList()
     {
-        return view('BackendPages.Course.CourseGroupListPage');
+        return view('BackendPages.Course.coursegrouplistpage');
     }
 
 

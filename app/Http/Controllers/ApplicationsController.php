@@ -26,7 +26,7 @@ class ApplicationsController extends Controller
 
     public function viewApplicationPage($id)
     {
-        return view('Backendpages.CourseApplications.viewapplication.blade', ['id' => $id]);
+        return view('Backendpages.CourseApplications.viewapplication', ['id' => $id]);
     }
 
 
